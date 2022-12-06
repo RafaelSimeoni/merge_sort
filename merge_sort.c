@@ -5,11 +5,9 @@ void mergeSort(int *vetor, int esq, int dir) {
   if(esq == dir) { //se o elemento da esquerda for igual ao da direita, o vetor possui uma posição
     return;
   }
-  if(dir - esq <= 10) { //utilizando o insertion sort em arrays com menos de 10 elementos
-    printf("aqui %d\n", dir-esq+1);
-    insertionSort(vetor, dir-esq+1);
+  if(dir - esq > 10) { //utilizando o insertion sort em arrays com menos de 10 elementos
+    insertionSort(vetor, dir-esq);
   } else {
-    printf("\nMerge realizado\n");
     int meio = (esq + dir) / 2;
 
     //chama a mesma função para as duas metades do array
@@ -19,11 +17,10 @@ void mergeSort(int *vetor, int esq, int dir) {
     if(vetor[meio] <= vetor[meio+1]) { //impedir merge caso seja desnecessário
       return;
     }
-
     //função que combinará dois arrays
     merge(vetor, esq, meio, dir);
-
   } 
+     
 }
 void merge(int *vetor, int esq, int meio, int dir) {
   int i, j, k; //contadores
@@ -52,7 +49,7 @@ void merge(int *vetor, int esq, int meio, int dir) {
   }
 }
 
-void insertionSort(int arr[], int n)
+void insertionSort(int *arr, int n)
 {
 	int i, key, j;
 	for (i = 1; i < n; i++) {
